@@ -1,0 +1,404 @@
+  [1m[35m (131.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (175.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (9.5ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (14.6ms)[0m  [1m[34mSELECT GET_LOCK('8353079388934592340', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20160629122845)
+  [1m[35m (128.9ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160629122845')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2016-06-29 12:29:05', '2016-06-29 12:29:05')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (14.8ms)[0m  [1m[34mSELECT RELEASE_LOCK('8353079388934592340')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'coaching_mysql_development'
+  AND fk.table_name = 'users'
+[0m
+Started GET "/" for ::1 at 2016-06-29 15:29:18 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (7.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (4.4ms)
+Completed 200 OK in 47ms (Views: 19.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 15:29:21 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 1396ms (Views: 1390.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/new" for ::1 at 2016-06-29 15:29:24 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (77.2ms)
+  Rendered users/new.html.erb within layouts/application (79.4ms)
+Completed 200 OK in 136ms (Views: 113.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:29:28 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PQ7c4k+plXOJegEuNRconAMYCDmNZLG7gckyWfbFYM9FlrbR3i94tx5SDP6vlfYYP9auoejCspYdGpr9Cn3tdg==", "user"=>{"name"=>"asd", "email"=>"asd@asd"}, "commit"=>"Create User"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`) VALUES ('asd', 'asd@asd', '2016-06-29 12:29:28', '2016-06-29 12:29:28')[0m
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 20ms (ActiveRecord: 16.3ms)
+
+
+Started GET "/users/1" for ::1 at 2016-06-29 15:29:28 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 78ms (Views: 34.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 15:29:30 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 32ms (Views: 29.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/new" for ::1 at 2016-06-29 15:29:31 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (2.7ms)
+  Rendered users/new.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 29ms (Views: 26.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2016-06-29 15:29:35 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tseIpBzSuv0LL50opG90BtSxhQ8vCs/US2wNFNWs2MfOX+KXjVRXOZwHkPg+7aqC6H8jl0qszPnXv6WwKRRVfg==", "user"=>{"name"=>"zzz", "email"=>"zzzz@zzzz"}, "commit"=>"Create User"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`) VALUES ('zzz', 'zzzz@zzzz', '2016-06-29 12:29:35', '2016-06-29 12:29:35')[0m
+  [1m[35m (33.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 38ms (ActiveRecord: 34.2ms)
+
+
+Started GET "/users/2" for ::1 at 2016-06-29 15:29:35 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 15:29:38 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('8353079388934592340', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateMicroposts (20160629123019)
+  [1m[35m (77.0ms)[0m  [1m[35mCREATE TABLE `microposts` (`id` int AUTO_INCREMENT PRIMARY KEY, `content` varchar(255), `user_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160629123019')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('8353079388934592340')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `microposts`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'microposts'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'coaching_mysql_development'
+  AND fk.table_name = 'microposts'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'coaching_mysql_development'
+  AND fk.table_name = 'users'
+[0m
+Started GET "/" for ::1 at 2016-06-29 15:32:59 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (4.1ms)
+Completed 200 OK in 47ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/microposts/" for ::1 at 2016-06-29 15:33:58 +0300
+Processing by MicropostsController#index as HTML
+  Rendering microposts/index.html.erb within layouts/application
+  [1m[36mMicropost Load (0.4ms)[0m  [1m[34mSELECT `microposts`.* FROM `microposts`[0m
+  Rendered microposts/index.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 390ms (Views: 363.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/microposts/new" for ::1 at 2016-06-29 15:34:00 +0300
+Processing by MicropostsController#new as HTML
+  Rendering microposts/new.html.erb within layouts/application
+  Rendered microposts/_form.html.erb (57.9ms)
+  Rendered microposts/new.html.erb within layouts/application (59.8ms)
+Completed 200 OK in 91ms (Views: 83.9ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/microposts" for ::1 at 2016-06-29 15:34:11 +0300
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8MnqBu9Oh128QafGiuLyrPbwPmA2MsaFDKOUFZrzokHqyv3/BRsAgivBhw+df5KoITwgMEmI71E1+WhXzhBowg==", "micropost"=>{"content"=>"asdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasd", "user_id"=>""}, "commit"=>"Create Micropost"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering microposts/new.html.erb within layouts/application
+  Rendered microposts/_form.html.erb (3.6ms)
+  Rendered microposts/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 61ms (Views: 39.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/microposts" for ::1 at 2016-06-29 15:34:24 +0300
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JmKVWoMlYMqobOe8/ZIayHkT5VGG5NChcEtwQuL8us6yU6TEtOhGYTZftNeyts0OqXF9bUJIP/lfwSlEYQmzbw==", "micropost"=>{"content"=>"asdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasd", "user_id"=>"1"}, "commit"=>"Create Micropost"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering microposts/new.html.erb within layouts/application
+  Rendered microposts/_form.html.erb (3.5ms)
+  Rendered microposts/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 82ms (Views: 39.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/microposts" for ::1 at 2016-06-29 15:34:32 +0300
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6u2fK9WG0o+Q70VusOz/HfBuxef6wqlpUflbsBMpC91+3K614kv0JA7cFgX/yCjbIAxd2z5uRjF+cwK2kNwCfA==", "micropost"=>{"content"=>"asdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasdasdasdasdasdasd", "user_id"=>"1"}, "commit"=>"Create Micropost"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering microposts/new.html.erb within layouts/application
+  Rendered microposts/_form.html.erb (2.3ms)
+  Rendered microposts/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 30ms (Views: 26.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/microposts" for ::1 at 2016-06-29 15:34:38 +0300
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bCxlY4wNxZ0pw0Lz7XZVk2eymZ/R8dK4LrBIeLrjc8X4HVT9u8DjNrfwEZiiUoJVt9ABoxVdPeABOhF+ORZ6ZA==", "micropost"=>{"content"=>"asdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasd", "user_id"=>"1"}, "commit"=>"Create Micropost"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `microposts` (`content`, `user_id`, `created_at`, `updated_at`) VALUES ('asdijbasjidjoasdjasjdbjaisdbjiasbdijbasidjbasijdbijasdijabsdijbasijdbaijsbdijasbdijbasijdbasijdbijasbdijabsidjbasijdbasdasd', 1, '2016-06-29 12:34:38', '2016-06-29 12:34:38')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/microposts/1
+Completed 302 Found in 5ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/microposts/1" for ::1 at 2016-06-29 15:34:38 +0300
+Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  `microposts`.* FROM `microposts` WHERE `microposts`.`id` = 1 LIMIT 1[0m
+  Rendering microposts/show.html.erb within layouts/application
+  Rendered microposts/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 29ms (Views: 26.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/microposts" for ::1 at 2016-06-29 15:34:39 +0300
+Processing by MicropostsController#index as HTML
+  Rendering microposts/index.html.erb within layouts/application
+  [1m[36mMicropost Load (0.4ms)[0m  [1m[34mSELECT `microposts`.* FROM `microposts`[0m
+  Rendered microposts/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 28ms (Views: 25.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts/new" for ::1 at 2016-06-29 15:34:41 +0300
+Processing by MicropostsController#new as HTML
+  Rendering microposts/new.html.erb within layouts/application
+  Rendered microposts/_form.html.erb (2.0ms)
+  Rendered microposts/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 34ms (Views: 32.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for ::1 at 2016-06-29 15:34:44 +0300
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GtgHNVrsDgFKoXZKsqhaDMIb3WiX3e/Lbu5A0p+TMJEA2xDMsLmJ3t0hVoOlNToIFdfDOOhnxh9XtLyQy3D6Eg==", "micropost"=>{"content"=>"zzz", "user_id"=>"2"}, "commit"=>"Create Micropost"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `microposts` (`content`, `user_id`, `created_at`, `updated_at`) VALUES ('zzz', 2, '2016-06-29 12:34:44', '2016-06-29 12:34:44')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/microposts/2
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/microposts/2" for ::1 at 2016-06-29 15:34:44 +0300
+Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  `microposts`.* FROM `microposts` WHERE `microposts`.`id` = 2 LIMIT 1[0m
+  Rendering microposts/show.html.erb within layouts/application
+  Rendered microposts/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/microposts" for ::1 at 2016-06-29 15:34:45 +0300
+Processing by MicropostsController#index as HTML
+  Rendering microposts/index.html.erb within layouts/application
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT `microposts`.* FROM `microposts`[0m
+  Rendered microposts/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/microposts" for ::1 at 2016-06-29 15:36:13 +0300
+Processing by MicropostsController#index as HTML
+Completed 200 OK in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:36:17 +0300
+  
+AbstractController::ActionNotFound (The action 'hello' could not be found for ApplicationController):
+  
+actionpack (5.0.0.rc2) lib/abstract_controller/base.rb:121:in `process'
+actionview (5.0.0.rc2) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.rc2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.rc2) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.rc2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.rc2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.rc2) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.rc2) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.rc2) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.rc2) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.0.rc1) lib/rack/etag.rb:25:in `call'
+rack (2.0.0.rc1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.0.rc1) lib/rack/head.rb:12:in `call'
+rack (2.0.0.rc1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.0.rc1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.rc2) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.rc2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.rc2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.rc2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.rc2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.rc2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.rc2) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.rc2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.rc2) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.rc2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.0.rc1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.0.rc1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.rc2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.0.rc1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.rc2) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+  Rendering /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.rc2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout
+  Rendered /Users/epalyanov/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.rc2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.4ms)
+Started GET "/" for ::1 at 2016-06-29 15:36:26 +0300
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:42:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 14ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 15:42:28 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 205ms (Views: 197.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/microposts/" for ::1 at 2016-06-29 15:42:40 +0300
+Processing by MicropostsController#index as HTML
+  Rendering microposts/index.html.erb within layouts/application
+  [1m[36mMicropost Load (0.4ms)[0m  [1m[34mSELECT `microposts`.* FROM `microposts`[0m
+  Rendered microposts/index.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 40ms (Views: 31.2ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 15:55:18 +0300
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 16:08:41 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (10.7ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 18ms (Views: 7.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 16:08:46 +0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 317ms (Views: 302.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users" for ::1 at 2016-06-29 16:11:50 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 229ms (Views: 211.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2016-06-29 16:11:54 +0300
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (0.0ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+
+
