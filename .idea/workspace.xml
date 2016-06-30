@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e97a396-cf85-45d4-8e61-a78bc0135492" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="coaching_mysql.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -360,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467277592011</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add ignore">
+      <created>1467277698980</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1467277698980</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -396,7 +398,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change project struction" />
-    <option name="LAST_COMMIT_MESSAGE" value="change project struction" />
+    <MESSAGE value="add ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
