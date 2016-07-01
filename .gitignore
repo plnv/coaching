@@ -19,3 +19,4 @@ tmp/*
 .idea
 .DS_Store
 .secret
+spring/*.pid
