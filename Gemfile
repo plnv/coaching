@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails',        '>= 5.0.0.rc2', '< 5.1'
-gem 'puma',         '3.4.0'
-gem 'sass-rails',   '5.0.4'
-gem 'uglifier',     '3.0.0'
-gem 'coffee-rails', '4.1.1'
-gem 'jquery-rails', '4.1.1'
-gem 'turbolinks',   '5.0.0.beta2'
-gem 'jbuilder',     '2.4.1'
-gem 'mysql2',       '>= 0.3.18', '< 0.5'
-gem "haml-rails",   "~> 0.9"
+gem 'rails',          '>= 5.0.0.rc2', '< 5.1'
+gem 'puma',           '3.4.0'
+gem 'sass-rails',     '5.0.4'
+gem 'uglifier',       '3.0.0'
+gem 'coffee-rails',   '4.1.1'
+gem 'jquery-rails',   '4.1.1'
+gem 'turbolinks',     '5.0.0.beta2'
+gem 'jbuilder',       '2.4.1'
+gem 'mysql2',         '>= 0.3.18', '< 0.5'
+gem 'haml-rails',     '~> 0.9'
+gem 'bootstrap-sass', '3.3.6'
 
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
