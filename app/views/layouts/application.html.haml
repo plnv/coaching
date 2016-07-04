@@ -3,8 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title
-      = succeed " | Ruby on Rails Tutorial Sample App" do
-        = yield(:title)
+      = full_title(yield(:title))
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', |
       'data-turbolinks-track': 'reload'                |
