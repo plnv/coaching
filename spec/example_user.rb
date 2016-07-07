@@ -19,4 +19,8 @@ class User
     @arr = @name.split(" ")
     "#{@arr[1]}, #{@arr[0]}"
   end
+
+  def check
+    full_name.split == alphabetical_name.split(', ').reverse
+  end
 end
