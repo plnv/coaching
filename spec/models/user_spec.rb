@@ -31,6 +31,29 @@ describe User do
 
 
 
+  describe "email addresses should be unique" do
+    before do
+      duplicate_user = @user.dup
+      duplicate_user.email = @user.email.upcase
+      duplicate_user.save
+    end
+    it { is_expected.to be_invalid }
+  end
+
+  describe "email addresses should be saved as lower-case" do
+    let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+    let(:lower_case_email) { "foo@example.com" }
+
+    it "should be saved as all lower-case" do
+      @user.email = mixed_case_email
+      expect {@user.save}.to change{@user.email}.from(mixed_case_email).to(lower_case_email)
+    end
+  end
+
+
+
+
+
   describe "email should not be too long" do
     before { @user.name = "a" * 244 + "@example.com" }
     it { is_expected.not_to be_valid }
@@ -60,6 +83,12 @@ describe User do
 
   describe "password expected to be present (nonblank)" do
     before { @user.password = @user.password_confirmation = " " * 6 }
+    it { is_expected.to be_invalid }
+  end
+
+
+  describe "password should not be too long" do
+    before { @user.password = @user.password_confirmation = "a" *  73 }
     it { is_expected.to be_invalid }
   end
 
