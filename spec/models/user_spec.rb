@@ -13,8 +13,6 @@ describe User do
   it { is_expected.to respond_to(:password) }
   it { is_expected.to respond_to(:password_confirmation) }
 
-
-
   describe "expected to be valid" do
     it { is_expected.to be_valid }
   end
@@ -28,8 +26,6 @@ describe User do
     before { @user.name = "a" * 51 }
     it { is_expected.not_to be_valid }
   end
-
-
 
   describe "email addresses should be unique" do
     before do
@@ -49,10 +45,6 @@ describe User do
       expect {@user.save}.to change{@user.email}.from(mixed_case_email).to(lower_case_email)
     end
   end
-
-
-
-
 
   describe "email should not be too long" do
     before { @user.name = "a" * 244 + "@example.com" }
@@ -78,8 +70,6 @@ describe User do
       end
     end
   end
-
-
 
   describe "password expected to be present (nonblank)" do
     before { @user.password = @user.password_confirmation = " " * 6 }
