@@ -42,13 +42,17 @@ describe User do
 
   describe "email addresses should be saved as lower-case" do
     let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+    let(:lower_case_email) { "foo@example.com" }
 
     it "should be saved as all lower-case" do
       @user.email = mixed_case_email
-      @user.save
-      expect(@user.reload.email).to eq mixed_case_email.downcase
+      expect {@user.save}.to change{@user.email}.from(mixed_case_email).to(lower_case_email)
     end
   end
+
+
+
+
 
   describe "email should not be too long" do
     before { @user.name = "a" * 244 + "@example.com" }
