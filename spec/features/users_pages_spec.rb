@@ -14,10 +14,12 @@ describe "Users pages" do
   end
 
   describe "Sign up page" do
-
+    let(:submit) { "Create my account" }
     before { visit signup_path }
 
-    let(:submit) { "Create my account" }
+    describe "expect to have form" do
+      it { is_expected.to have_selector('form[action="/signup"]') }
+    end
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -29,6 +31,8 @@ describe "Users pages" do
 
         it { is_expected.to have_title('Sign up') }
         it { is_expected.to have_content('error') }
+        it { is_expected.to have_selector('#error_explanation', text: 'The form contains') }
+        it { is_expected.to have_selector('.field_with_errors') }
       end
     end
 
