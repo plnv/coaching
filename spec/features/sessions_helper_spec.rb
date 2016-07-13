@@ -16,6 +16,10 @@ describe 'Authentication' do
   describe 'signin' do
     before { visit login_path }
 
+    describe "expect to have form" do
+      it { is_expected.to have_selector('form[action="/login"]') }
+    end
+
     describe 'with invalid information' do
       before { click_button login }
 
