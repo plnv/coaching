@@ -33,7 +33,7 @@ describe 'Authentication' do
     end
 
     describe 'with valid information' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:user, {name:'Michael Hartl', email:'michael@example.com', password:"foobar"}) }
 
       before do
         fill_in 'Email', with: user.email
