@@ -4,7 +4,8 @@ require 'rails_helper'
 describe "Users pages" do
 
   subject { page }
-  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar', admin:true}) }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar'}) }
+  let(:admin) { FactoryGirl.create(:admin, {admin: true}) }
 
   describe "profile page" do
     before { visit user_path(user) }
@@ -66,12 +67,14 @@ describe "Users pages" do
     end
   end
 
+
+
   describe "All users" do
     before do
       30.times { FactoryGirl.create(:user) }
       visit login_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
+      fill_in 'Email', with: admin.email
+      fill_in 'Password', with: admin.password
       click_button 'Log in'
       visit users_path
     end
