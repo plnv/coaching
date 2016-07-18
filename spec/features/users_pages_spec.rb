@@ -5,7 +5,7 @@ describe "Users pages" do
 
   subject { page }
   let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar'}) }
-  let(:admin) { FactoryGirl.create(:admin, {admin: true}) }
+  let(:admin) { FactoryGirl.create(:admin) }
 
   describe "profile page" do
     before { visit user_path(user) }
@@ -86,7 +86,6 @@ describe "Users pages" do
       User.paginate(page: 1).each do |user|
         expect(page).to have_selector('a', text: user.name)
       end
-
     end
 
     it 'delete users' do
@@ -95,8 +94,7 @@ describe "Users pages" do
       end.to change(User, :count).by(-1)
 
       is_expected.to have_selector('div.alert.alert-success', text: 'User deleted')
+      is_expected.to have_no_link('delete', href: user_path(admin))
     end
-
   end
-
 end
