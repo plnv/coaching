@@ -4,9 +4,9 @@ require 'rails_helper'
 describe "Users pages" do
 
   subject { page }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar', admin:true}) }
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
     it { is_expected.to have_content(user.name) }
@@ -65,4 +65,35 @@ describe "Users pages" do
       expect(page).to have_title("Sign up | Ruby on Rails Tutorial Sample App")
     end
   end
+
+  describe "All users" do
+    before do
+      30.times { FactoryGirl.create(:user) }
+      visit login_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Log in'
+      visit users_path
+    end
+
+    it 'including pagination' do
+      expect(page).to have_selector('div.pagination')
+      expect(page).to have_selector('a', text: 'Next')
+
+      User.paginate(page: 1).each do |user|
+        expect(page).to have_selector('a', text: user.name)
+      end
+
+    end
+
+    it 'delete users' do
+      expect do
+        click_link('delete', match: :first)
+      end.to change(User, :count).by(-1)
+
+      is_expected.to have_selector('div.alert.alert-success', text: 'User deleted')
+    end
+
+  end
+
 end
