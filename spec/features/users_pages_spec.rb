@@ -4,9 +4,10 @@ require 'rails_helper'
 describe "Users pages" do
 
   subject { page }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar', activated:true}) }
+  let(:admin) { FactoryGirl.create(:admin, {activated:true}) }
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
     it { is_expected.to have_content(user.name) }
@@ -52,8 +53,7 @@ describe "Users pages" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
-        it { is_expected.to have_title(user.name) }
-        it { is_expected.to have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { is_expected.to have_selector('div.alert.alert-info', text: 'Please check your email to activate your account.') }
       end
     end
 
@@ -63,6 +63,37 @@ describe "Users pages" do
 
     it "should have the title 'Sign up'" do
       expect(page).to have_title("Sign up | Ruby on Rails Tutorial Sample App")
+    end
+  end
+
+
+
+  describe "All users" do
+    before do
+      30.times { FactoryGirl.create(:user, {activated:true}) }
+      visit login_path
+      fill_in 'Email', with: admin.email
+      fill_in 'Password', with: admin.password
+      click_button 'Log in'
+      visit users_path
+    end
+
+    it 'including pagination' do
+      expect(page).to have_selector('div.pagination')
+      expect(page).to have_selector('a', text: 'Next')
+
+      User.paginate(page: 1).each do |user|
+        expect(page).to have_selector('a', text: user.name)
+      end
+    end
+
+    it 'delete users' do
+      expect do
+        click_link('delete', match: :first)
+      end.to change(User, :count).by(-1)
+
+      is_expected.to have_selector('div.alert.alert-success', text: 'User deleted')
+      is_expected.to have_no_link('delete', href: user_path(admin))
     end
   end
 end
