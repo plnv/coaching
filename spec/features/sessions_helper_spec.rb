@@ -26,14 +26,14 @@ describe 'Authentication' do
         click_button 'Log in'
 
         is_expected.to have_title('Log in')
-        is_expected.to have_selector('div.alert.alert-danger')
+        is_expected.to have_selector('div.alert.alert-danger', text: 'Invalid email/password combination')
       end
 
       it 'after visiting another page' do
         click_button 'Log in'
         click_link 'Home'
 
-        is_expected.to have_no_selector('div.alert.alert-danger')
+        is_expected.to have_no_selector('div.alert.alert-danger', text: 'Invalid email/password combination')
       end
     end
 
