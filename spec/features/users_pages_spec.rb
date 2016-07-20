@@ -4,8 +4,8 @@ require 'rails_helper'
 describe "Users pages" do
 
   subject { page }
-  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar'}) }
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar', activated:true}) }
+  let(:admin) { FactoryGirl.create(:admin, {activated:true}) }
 
   describe "profile page" do
     before { visit user_path(user) }
@@ -53,8 +53,7 @@ describe "Users pages" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
-        it { is_expected.to have_title(user.name) }
-        it { is_expected.to have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { is_expected.to have_selector('div.alert.alert-info', text: 'Please check your email to activate your account.') }
       end
     end
 
@@ -71,7 +70,7 @@ describe "Users pages" do
 
   describe "All users" do
     before do
-      30.times { FactoryGirl.create(:user) }
+      30.times { FactoryGirl.create(:user, {activated:true}) }
       visit login_path
       fill_in 'Email', with: admin.email
       fill_in 'Password', with: admin.password

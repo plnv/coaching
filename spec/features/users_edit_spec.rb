@@ -4,7 +4,7 @@ require 'rails_helper'
 describe 'User edit profile' do
 
   subject { page }
-  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar'}) }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: 'foobar', activated:true}) }
   let(:new_user) { FactoryGirl.create(:user, {name: 'New User', email: 'newuser@mail.com', password: 'barfoo'}) }
 
   describe 'with login' do
