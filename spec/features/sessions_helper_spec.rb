@@ -12,7 +12,7 @@ describe 'Authentication' do
     is_expected.to have_title('Log in')
   end
 
-  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: "foobar"}) }
+  let(:user) { FactoryGirl.create(:user, {name: 'Michael Hartl', email: 'michael@example.com', password: "foobar", activated:true}) }
 
   describe 'log in' do
     before { visit login_path }
