@@ -8,10 +8,16 @@ describe "Users pages" do
   let(:admin) { FactoryGirl.create(:admin, {activated:true}) }
 
   describe "profile page" do
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
     before { visit user_path(user) }
 
     it { is_expected.to have_content(user.name) }
     it { is_expected.to have_title(user.name) }
+    it { is_expected.to have_content(m1.content) }
+    it { is_expected.to have_content(m2.content) }
+    it { is_expected.to have_content(user.microposts.count) }
   end
 
   describe "Sign up page" do
@@ -65,8 +71,6 @@ describe "Users pages" do
       expect(page).to have_title("Sign up | Ruby on Rails Tutorial Sample App")
     end
   end
-
-
 
   describe "All users" do
     before do
