@@ -90,7 +90,7 @@ describe "Users pages" do
 
     it 'delete users' do
       expect do
-        click_link('delete', match: :first)
+        click_link('delete', href: user_path(User.first))
       end.to change(User, :count).by(-1)
 
       is_expected.to have_selector('div.alert.alert-success', text: 'User deleted')

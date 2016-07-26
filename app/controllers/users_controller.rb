@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  # Before filters
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -41,14 +46,9 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  # Before filters
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
-
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
     # Confirms a logged-in user.
