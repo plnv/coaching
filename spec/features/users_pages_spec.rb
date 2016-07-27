@@ -71,7 +71,9 @@ describe "Users pages" do
 
   describe "All users" do
     before do
-      30.times { FactoryGirl.create(:user) }
+      User.per_page = 1
+      FactoryGirl.create :user, name: "User 1"
+      FactoryGirl.create :user, name: "User 2"
       visit login_path
       fill_in 'Email', with: admin.email
       fill_in 'Password', with: admin.password
@@ -82,10 +84,8 @@ describe "Users pages" do
     it 'including pagination' do
       expect(page).to have_selector('div.pagination')
       expect(page).to have_selector('a', text: 'Next')
-
-      User.paginate(page: 1).each do |user|
-        expect(page).to have_selector('a', text: user.name)
-      end
+      expect(page).to have_link('User 1')
+      expect(page).to have_no_link('User 2')
     end
 
     it 'delete users' do
