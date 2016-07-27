@@ -26,7 +26,7 @@ describe 'User edit profile' do
       fill_in 'Email', with: ''
       click_button 'Save changes'
 
-      is_expected.to have_content('error')
+      is_expected.to have_selector('div.alert.alert-danger', text: 'The form contains 2 errors')
     end
 
     it 'as valid information' do
@@ -47,7 +47,7 @@ describe 'User edit profile' do
       visit edit_user_path(user)
 
       is_expected.to have_title('Log in')
-      is_expected.to have_selector('div.alert.alert-danger')
+      is_expected.to have_selector('div.alert.alert-danger', text: 'Please log in.')
     end
   end
 
