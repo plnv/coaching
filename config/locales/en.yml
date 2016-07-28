@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  base_title: "Ruby on Rails Tutorial Sample App"
+  flash:
+    messages:
+      welcome: "Welcome to the Sample App!"
+      profile_updated: "Profile updated"
+      log_in: "Please log in."
+      user_deleted: "User deleted"
+      user_not_exist: "User does not exist"
+      invalid_email_password: "Invalid email/password combination"
