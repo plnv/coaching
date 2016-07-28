@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = I18n.t('flash.messages.welcome')
       redirect_to @user
     else
       render 'new'
@@ -33,7 +33,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      #flash[:success] = "Profile updated"
+      flash[:success] = I18n.t('flash.messages.profile_updated')
       redirect_to @user
     else
       render 'edit'
@@ -44,9 +45,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id:params[:id])
     if @user
       @user.destroy
-      flash[:success] = "User deleted"
+      flash[:success] = I18n.t('flash.messages.user_deleted')
     else
-      flash[:danger] = "User does not exist"
+      flash[:danger] = I18n.t('flash.messages.user_not_exist')
     end
     redirect_to users_url
   end
@@ -60,7 +61,8 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        #flash[:danger] = "Please log in."
+        flash[:danger] = I18n.t("flash.messages.log_in")
         redirect_to login_url
       end
     end
