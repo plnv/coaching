@@ -67,8 +67,6 @@ describe "Users pages" do
     end
   end
 
-
-
   describe "All users" do
     before do
       User.per_page = 1
@@ -81,11 +79,20 @@ describe "Users pages" do
       visit users_path
     end
 
-    it 'including pagination' do
-      expect(page).to have_selector('div.pagination')
-      expect(page).to have_selector('a', text: 'Next')
-      expect(page).to have_link('User 1')
-      expect(page).to have_no_link('User 2')
+    describe "including pagination" do
+      it 'first page' do
+        expect(page).to have_selector('div.pagination')
+        expect(page).to have_selector('a', text: 'Next')
+        expect(page).to have_link('User 1')
+        expect(page).to have_no_link('User 2')
+      end
+
+      it 'next page' do
+        first('.next').click_link('Next')
+
+        expect(page).to have_no_link('User 1')
+        expect(page).to have_link('User 2')
+      end
     end
 
     it 'delete users' do
